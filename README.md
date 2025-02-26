@@ -14,7 +14,7 @@ PostgreSQL 16+ com PostGIS habilitado
 Docker (para rodar o PostgreSQL via container)
 Bibliotecas Python (instalar via requirements.txt
 Caso use Docker, suba o banco de dados com:
-‘docker run --name pg_container -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=geodata -p 5434:5432 -d postgis/postgis’
+‘docker run --name pg_container -e POSTGRES_USER= -e POSTGRES_PASSWORD= -e POSTGRES_DB= -p 5434:5432 -d postgis/postgis’
 
 Passo a passo:
 Passo 1 > Baixar os dados do TerraBrasilis:
