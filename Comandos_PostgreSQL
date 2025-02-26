@@ -1,0 +1,18 @@
+--Para criar um índice espacial GIST
+CREATE INDEX deforestation_geom_idx
+ON raw_data.deforestation
+USING GIST (geometry);
+
+--Para verificar se o SRID das geometrias está em: 4326
+SELECT DISTINCT ST_SRID(geometry) FROM raw_data.deforestation;
+
+--Para validar geometrias antes das consultas espaciais
+SELECT COUNT(*) FROM raw_data.deforestation WHERE ST_IsValid(geometry) = false;
+
+--Para consulta espacial: contar desmatamento por estado
+SELECT s."SIGLA_UF", COUNT(*) AS total_desmatamento
+FROM raw_data.deforestation d
+JOIN raw_data.states s
+ON ST_Intersects(d.geometry, s.geometry)
+GROUP BY s."SIGLA_UF"
+ORDER BY total_desmatamento DESC;
